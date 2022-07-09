@@ -1,11 +1,11 @@
 {
   "name": "gatsby-starter-blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "blog description",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Lukas Petersson <lukas.petersson.1999@gmail.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/lukaspetersson/ye_tools_blog/issues"
   },
   "dependencies": {
     "gatsby": "^4.18.0",
@@ -35,14 +35,14 @@
   "devDependencies": {
     "prettier": "^2.7.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/lukaspetersson/ye_tools_blog#readme",
   "keywords": [
     "gatsby"
   ],
   "license": "0BSD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/lukaspetersson/ye_tools_blog.git"
   },
   "scripts": {
     "build": "gatsby build",
