@@ -1,7 +1,7 @@
 ---
 title: Music generation with Markov Chains
 date: "2022-07-10"
-description: A trip back in time to the very first method of computer generated music.
+description: A trip back in time to the very first method for computer generated music.
 ---
 
 > This post is under development and is subject to changes 

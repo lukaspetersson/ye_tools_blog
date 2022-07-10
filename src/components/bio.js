@@ -16,10 +16,6 @@ const Bio = () => {
         siteMetadata {
           author {
             name
-            summary
-          }
-          social {
-            twitter
           }
         }
       }
@@ -28,7 +24,6 @@ const Bio = () => {
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
-  const social = data.site.siteMetadata?.social
 
   return (
     <div className="bio">
@@ -36,17 +31,17 @@ const Bio = () => {
         className="bio-avatar"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
-        src="../images/gatsby-icon.png"
-        width={50}
-        height={50}
-        quality={95}
+        src="../images/profile_pic.jpg"
+        width={60}
+        height={60}
+        quality={100}
         alt="Profile picture"
       />
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-        </p>
-      )}
+      <div>
+        <p>Written by <strong>{author.name}</strong></p>
+        <p>Thoughts, comments or questions? Reach out!</p>
+        <p>lukas.petersson.1999@gmail.com</p>
+      </div>
     </div>
   )
 }

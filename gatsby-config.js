@@ -3,10 +3,9 @@ module.exports = {
     title: `Ye Tools`,
     author: {
       name: `Lukas Petersson`,
-      summary: `about me.`,
     },
-    description: `blog desc.`,
     siteUrl: `https://yetools.net`,
+    description: 'A blog about computer generated music with machine learning!'
   },
   plugins: [
     `gatsby-plugin-image`,
