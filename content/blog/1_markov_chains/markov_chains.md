@@ -1,11 +1,8 @@
 ---
 title: Music generation with Markov Chains
 date: "2022-07-10"
-description: post description
+description: A trip back in time to the very first method of computer generated music.
 ---
-
-
-# Music generation with Markov Chains
 
 > This post is under development and is subject to changes 
 
@@ -29,7 +26,7 @@ To generate the music this matrix was implemented in python, and in each iterati
 ![first notes](./images/first_notes.png)
 `audio: https://www.maths.lth.se/matematiklth/personal/tomasp/MarkovSong1.mp3`
 
-# Use music theory to improve results
+## Use music theory to improve results
 To improve the results we will use observations from music theory to change the matrix. The first observation is that certain notes sound good together. If note i and j sound good together, it makes sense to increase the matrix element a_ij, the probability of going from i to j. But which notes sound good together? When a note is played, a sound wave of a certain frequency propagates from the speaker, this is the fundamental harmonic. For example, this frequency is 440 Hz for the middle C on the keyboard. But other harmonics of higher frequencies are also produced, these are integer multiples of the fundamental harmonic. It has been observed that notes which share many harmonics sound good together. Mathematically, sharing harmonics is equivalent to having frequencies which have a ration of a rational number. The most common chords, triads, are made from notes with ratios 1:3/2:5/4. In the special case where the ratio is an integer, the notes sound so good together that we say that they are the same note but played in different octaves.
 
 ![octaves](./images/octaves.png)
