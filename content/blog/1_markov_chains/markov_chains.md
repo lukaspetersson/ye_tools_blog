@@ -1,3 +1,10 @@
+---
+title: Music generation with Markov Chains
+date: "2022-07-10"
+description: post description
+---
+
+
 # Music generation with Markov Chains
 
 > This post is under development and is subject to changes 
