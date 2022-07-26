@@ -39,8 +39,8 @@ const Bio = () => {
       />
       <div>
         <p>Written by <strong>{author.name}</strong></p>
-        <p>Thoughts, comments or questions? Reach out!</p>
-        <p>lukas.petersson.1999@gmail.com</p>
+        <p>Thoughts, comments or questions? <a href="mailto:lukas.petersson.1999@gmail.com">Reach out!</a></p>
+        <p>All code can be found <a href="https://github.com/lukaspetersson/ye_tools">here</a></p>
       </div>
     </div>
   )
