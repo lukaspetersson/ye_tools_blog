@@ -4,6 +4,8 @@ date: "2022-07-26"
 description: "Prepare dataset for future melody models." 
 ---
 
+> This post is under development and is subject to changes 
+
 Our [first attempt to generate music](https://yetools.net/1_markov_chains/markov_chains/) did not prove to be successful. Our suspicion was that the degrees of freedom were too vast, and a [software 1.0 solution](https://karpathy.medium.com/software-2-0-a64152b37c35) was not sufficient. We already knew that this was going to be the case, but you have to walk before you run. Today we take the next step on our journey and explore music generation with simple Machine learning models, and then we continue towards state of the art models.
 
 Before we can start training the models, we have to prepare the data. Here we choose to represent the music symbolically rather than with raw audio. The reasons for this were discussed in the [previous post](https://yetools.net/2_music_representation/music_repr/). We’ll use the [Lakh dataset](https://colinraffel.com/projects/lmd/), which consists of ~180k MIDI files, and the python library [Music21](https://web.mit.edu/music21/doc/index.html) for processing.
