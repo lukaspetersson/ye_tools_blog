@@ -6,7 +6,7 @@ description: "Training a Complex Valued Neural Network to generate melodies."
 
 > This post is under development and is subject to changes 
 
-A [language model in NLP](https://en.wikipedia.org/wiki/Language_model) is a model which predicts the next word based on the previous words. Such a model can be used to create text by iteratively adding the predicted word to the list of words and using the new list as the basis for the next prediction. Similarly, we here try to build a melody model, a model which predicts the next note based on previous notes. We then use it to create a melody! In this post our model will be a simple feedforward neural network (FNN). In the next post we will improve our melody generator by implementing a LSTM model.
+A [language model in NLP](https://en.wikipedia.org/wiki/Language_model) is a model which predicts the next word based on the previous words. Such a model can be used to create text by iteratively adding the predicted word to the list of words and using the new list as the basis for the next prediction. Similarly, we here try to build a melody model, a model which predicts the next note based on previous notes. We then use it to create a melody! In this post our model will be a simple multilayer perceptron (MLP). In the next post we will improve our melody generator by implementing a LSTM model.
 
 
 ![music generation](./images/music_gen.png)
@@ -16,26 +16,26 @@ In the [last post](LINK) we prepared a dataset as a list of parts where the note
 
 ![dataset](../3_ml_data/images/dataset.png)
 
-With this representation we get a 2d vector of size (5,2) if we want to predict the next note based on the previous 5 notes. This is a problem as FNNs only take 1d vectors as input. A simple solution would be to flatten the input vector to a (10, 1) vector with every other element being a pitch and the others durations.
+With this representation we get a 2d vector of size (5,2) if we want to predict the next note based on the previous 5 notes. This is a problem as MLPs only take 1d vectors as input. A simple solution would be to flatten the input vector to a (10, 1) vector with every other element being a pitch and the others durations.
 
 ![flatten](./images/flatten.png)
 
 
-However, a lot of information is lost when we stop distinguishing between pitches and durations. A complex enough model could figure out this pattern and realize that it should treat elements on even indexes in a certain way and elements on odd indexes in another. This puts a lot of demand on the network to understand this complexity. Another solution could be to treat the pitch and duration separately and have two FNNs. However, this separation might be too strong. I am not an expert in music theory but my intuition is that there is information loss by completely separating them. For example, it could be that notes with higher pitch are generally played for shorter duration.
+However, a lot of information is lost when we stop distinguishing between pitches and durations. A complex enough model could figure out this pattern and realize that it should treat elements on even indexes in a certain way and elements on odd indexes in another. This puts a lot of demand on the network to understand this complexity. Another solution could be to treat the pitch and duration separately and have two MLPs. However, this separation might be too strong. I am not an expert in music theory but my intuition is that there is information loss by completely separating them. For example, it could be that notes with higher pitch are generally played for shorter duration.
 
-If we want to differentiate between pitch and duration, but not handle them completely separately, we can use a mapping function F: R²->R¹. For example: multiply pitch by 100 and add it to the duration. We can use this function as the input to the FNN and then run the function backwards on the output of the FNN. 
+If we want to differentiate between pitch and duration, but not handle them completely separately, we can use a mapping function F: R²->R¹. For example: multiply pitch by 100 and add it to the duration. We can use this function as the input to the MLP and then run the function backwards on the output of the MLP. 
 
 
 ![mapping function](./images/map_func.png)
 
-The downside of this is that we use hardcoded compression instead of letting the computer decide how to compress the data in a way that is optimal to optimize its objective. This is often worse, as discussed in [this post](https://yetools.net/2_music_representation/music_repr/). There are many more methods to reduce 2d inputs to 1d, it is for example extensively studied in computer vision. The solution that we present here is to model the notes as complex numbers, with pitch and duration as the real and imaginary part. We then feed them to a complex valued FNN (CVNN).
+The downside of this is that we use hardcoded compression instead of letting the computer decide how to compress the data in a way that is optimal to optimize its objective. This is often worse, as discussed in [this post](https://yetools.net/2_music_representation/music_repr/). There are many more methods to reduce 2d inputs to 1d, it is for example extensively studied in computer vision. The solution that we present here is to model the notes as complex numbers, with pitch and duration as the real and imaginary part. We then feed them to a complex valued MLP (CVNN).
 
 ```
 note = pitch + i * duration
 ```
 
 ## CVNN
- A CVNN is a FNN but where the inputs, weights, biases, nonlinearities are complex valued. Only the loss is real valued. Here is a simple example implementation in pytorch:
+ A CVNN is a MLP but where the inputs, weights, biases, nonlinearities are complex valued. Only the loss is real valued. Here is a simple example implementation in pytorch:
 
 ```
 def complex_relu(z):
@@ -68,7 +68,7 @@ Since the loss is low, we suspect that our model has learned to mimic the functi
 
  
 
-The phase rotating nature of multiplication of complex numbers at [has been shown](https://arxiv.org/pdf/2101.12249.pdf) to be advantages during training of CVNNs compared to FNNs. [Additional benefits can be gained if the real and imaginary parts are dependent as information can be encoded in the phase. This is for example the case if one encodes images with complex numbers, the phase encodes information about shapes, edges and orientation](https://arxiv.org/pdf/2101.12249.pdf). There is no dependance in our toy example, but it might be the case with music. As I stated above, my intuition is that a note’s pitch and duration is somehow dependent. We can search for such dependance by plotting all notes in our dataset in a plotting all notes in our dataset in a 2d histogram.
+The phase rotating nature of multiplication of complex numbers at [has been shown](https://arxiv.org/pdf/2101.12249.pdf) to be advantages during training of CVNNs compared to MLPs. [Additional benefits can be gained if the real and imaginary parts are dependent as information can be encoded in the phase. This is for example the case if one encodes images with complex numbers, the phase encodes information about shapes, edges and orientation](https://arxiv.org/pdf/2101.12249.pdf). There is no dependance in our toy example, but it might be the case with music. As I stated above, my intuition is that a note’s pitch and duration is somehow dependent. We can search for such dependance by plotting all notes in our dataset in a plotting all notes in our dataset in a 2d histogram.
 
 
 ![notes histogram](./images/notes_hist.png)
@@ -142,5 +142,4 @@ The result is not great, and is not even an improvement of what we generated in 
 
 It seems that we have underfitted. Our model has failed to model the complexity of musical melodies and instead opted for outputting the most common output in the training data. We can see in our note histogram that the most common note has a duration of 2 and a pitch around 68. This is exactly the note that the model predicts for the last half of the generated melody. This might be a result of too much repetitive data in our training data. However, we did make an attempt to exclude parts which were too repetitive. Taking a deep dive into what our data actually looks like could be a topic for a future post.
 
-The standard way of fighting underfitting is to increase model complexity. This could be done by adding more layers or making the layers wider. However, I think that we need to rethink the architecture more drastically. Our network has no sense of time, it does not know that the 5 notes we use as input are in fact played after each other. In the next post we will address this issue by implementing a LSTM model instead. Hope you stay tuned!
-
+The standard way of fighting underfitting is to increase model complexity. This could be done by adding more layers or making the layers wider. However, I think that we need to rethink the architecture more drastically. The model architecture is never told that the input notes are sequential. In the [next post](https://yetools.net/4_ml_lstm/lstm/) I explain that the model could, in theory, learn this fact, but that it is very difficult in practice. We adress this by implementing a LSTM instead. I hope you stay tuned!

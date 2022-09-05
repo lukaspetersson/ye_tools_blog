@@ -102,5 +102,5 @@ The final step is now to use this note representation to create a dataset of all
 This way, we lose the information that certain parts are played together in the same song. This is essential information if we were trying to compose a musical piece of multiple parts, but here we are only trying to generate standalone melodies. Therefore we accept this solution as it is simple to implement.
 
 ## Conclusion
-In this post we have imported a public dataset and modified it to fit our needs. For each song we filtered out parts according to some criterias. For the parts which we kept, we filtered out certain notes. We then represented the remaining data as a list of parts where the part’s notes were represented as a tuple of the note’s pitch and its duration. In the next post we will use this data to train a feedforward neural network. See you then!
+In this post we have imported a public dataset and modified it to fit our needs. For each song we filtered out parts according to some criterias. For the parts which we kept, we filtered out certain notes. We then represented the remaining data as a list of parts where the part’s notes were represented as a tuple of the note’s pitch and its duration. In the next post we will use this data to train a multilayer perceptron. See you then!
 
