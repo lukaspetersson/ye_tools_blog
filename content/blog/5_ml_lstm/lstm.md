@@ -5,6 +5,7 @@ description: "Training a LSTM to generate melodies."
 ---
 
 > This post is under development and is subject to changes 
+
 In the [last post](https://yetools.net/4_ml_cvnn/cvnn/), we generated a melody using a multilayer perceptron (MLP). However, such networks assume no temporal dependency between the notes. Hence, the result was really bad. In this post we will change the model architecture to a Long Short Term Memory model (LSTM). Such a model is part of a broader set of models called Recurrent Neural Networks (RNN). These models use sequential data as inputs and are therefore a good fit for melody generation.
 
 ## LSTM
@@ -104,8 +105,9 @@ The loss graph seems promising, it decreases just as we want it to. However, the
 ![Notes](./images/lstm_notes.png)
 `audio: ./lstm_output.mp4`
 
-This time we cannot complain about the model architecture. People have successfully trained LSTMs to generate much better melodies than this. One potential issue could be our data representation. While the format makes intuitive sense, at least to me, we have not made a proper analysis. However, I think the main issue is that the model has been trained with too few parameters and not enough data. We used 1 lstm layer of size 20 and trained on 500 songs, in contrast [Performance RNN](https://magenta.tensorflow.org/performance-rnn) by Magenta uses 3 layers of size 512 and trains on 1400 songs with additional augmentation to obtain many more data points. Unfortunately, my computer would not be able to train with those numbers in a reasonable time.
+This time we cannot complain about the model architecture. People have successfully trained LSTMs to generate much better melodies than this. One potential issue could be our data representation. While the format makes intuitive sense, at least to me, we have not made a proper analysis. At first I thought that the main issue was that the model has been trained with too few parameters and not enough data. I used 1 lstm layer of size 20 and trained on 500 songs, in contrast [Performance RNN](https://magenta.tensorflow.org/performance-rnn) by Magenta uses 3 layers of size 512 and trains on 1400 songs with additional augmentation to obtain many more data points. However, I obtain the same results even with more parameters.
 
+> To be continued. 
 
 ### Learning resources:
 https://www.youtube.com/playlist?list=PL-wATfeyAMNr0KMutwtbeDCmpwvtul-Xz
