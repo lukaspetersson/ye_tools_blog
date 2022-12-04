@@ -1,6 +1,6 @@
 ---
 title: "Music culture and Computer Generated Music"
-date: "2022-12-4"
+date: "2022-12-04"
 description: "Discussion of the cultural aspect and how it relates to computer generated music." 
 ---
 
@@ -23,7 +23,7 @@ There are many aspects that decide if you can relate to a song. Legendary music 
 
 In the same interview, Rick Rubin talked about how johnny cash’s cover of “Hurt” has a completely different meaning when sung by an old person, when regret is expressed by a young person it is tragic, but they have time to fix it, when it is expressed by an old person, it is brutal. There are many more factors that determine if a song relates to us: gender, socioeconomic status, family situation, etc. The list goes on.
 
-So, will we be able to generate music which is relatable? The naive answer is: yes: Just train on data which share the feeling you want to convey. This might work, but it is not obvious that it will. This strategy assumes that there is a way to define this feeling.
+So, will we be able to generate music which is relatable? The naive answer is: Yes, just train on data which share the feeling you want to convey. This might work, but it is not obvious that it will. This strategy assumes that there is a way to define this feeling.
 
 ## Technical point of view
 Imagine a N-dimensional space (N is big) where each dimension corresponds to some property of a song. The songs in our training set will correspond to a point in this space. The song must share some property which puts them close together in at least one of the dimensions. These dimensions are hopefully what is conveying the feeling. If you manage to  gather such data, the strategy stands a chance. However, if the feeling can be expressed in many different ways, meaning that when you pick songs for the training set that you think will convey one concrete feeling, the songs are distributed with high variance in the space. The result will be an average of the points, and this does not necessarily convey the same feeling.
