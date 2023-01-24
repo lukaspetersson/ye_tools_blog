@@ -1,8 +1,10 @@
 ---
-title: Democratizing music production: envisioning the simple DAW
+title: Democratizing music production, envisioning the simple DAW
 date: "2023-01-24"
 description: Project proposal for a simple DAW powered by "Github-Copilot for music".
 ---
+
+![wireframe](./images/wireframe.png)
 
 ## Problem
 The world of music production is changing. New music is no longer written on a piece of paper, imitating what is played on a guitar or a piano, but rather created in an idea-to-execution way in a Digital Audio Workstation (DAW). With the computer being the new piano, nearly 5 billion people have access to this potential hub of creativity, potentially unlocking the songwriting scene to people all over the world. However, this new way of creating music has inherited one of the biggest flaws of the traditional way: the technical difficulty. Playing an instrument is notoriously difficult, and unfortunately this has carried over to music writing in a DAW (this is obvious to anyone who has tried to navigate programs like Logic for the first time). Notably though, this difficulty is not per necessity but per design. While professional programs might need intricate designs to allow for full expressional freedom, there is an elitism built into many programs, which refuse to target an audience to which music production might be a completely new endeavor. On the other side of the spectrum are infantilizing dumbed-down point-and-click music generators. This leaves a void for people who might have a genuine interest in music creation but not the theoretical knowledge or the technical prowess to execute it in programs like Sibelius or Logic. A easy-to-use DAW with an AI-based recommendation-system to aid newcomers to the songwriting scene in getting started could fill this void and serve as a way to unlock the tallent reserve that have been locked in by the technical difficulty of traditional instruments.
